@@ -93,13 +93,13 @@
 
   <!-- Botón de Envío -->
   <div class="row">
-    <div class="col-md-12 text-end">
+    <div class="col-md-6 text-end">
       <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Enviar</button>
     </div>
   </div>
 </form>
 
-<div *ngIf="qrImageUrl">
+<div *ngIf="qrImageUrl" class="col-md-6 text-end">
   <button class="btn btn-primary" (click)="descargarQR()">Descargar QR</button>
 </div>
 <app-qr></app-qr>
