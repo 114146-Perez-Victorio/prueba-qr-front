@@ -8,7 +8,5 @@
 </zxing-scanner>
 
 <!-- Mostrar la información escaneada -->
-<div *ngIf="information">
-  <h3>Información Escaneada:</h3>
-  <p>{{ information }}</p>
-</div>
+<div *ngIf="information" [innerHTML]="information"></div>
+
