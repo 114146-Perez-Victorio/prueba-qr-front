@@ -98,3 +98,15 @@
     </div>
   </div>
 </form>
+
+<div *ngIf="qrImageUrl">
+  <button class="btn btn-primary" (click)="descargarQR()">Descargar QR</button>
+</div>
+
+
+<h1>SCANNER PRUEBA</h1>
+
+<zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
+</zxing-scanner>
+<button (click)="enableScanner()" *ngIf="!scannerEnabled" type="button" class="btn btn-success">LEER
+    OTRO</button>
