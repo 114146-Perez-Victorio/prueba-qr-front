@@ -14,30 +14,18 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 export class FormularioComponent {
   constructor(private restForm: RestService) {}
   qrImageUrl: string | null = null; // Variable para almacenar la URL de la imagen del QR
-  information: string = "";
   scannerEnabled: boolean = true;
+  information: string = "";
 
-  public scanSuccessHandler($event: any) {
-    this.scannerEnabled = false;
-    this.information = "Espera recuperando información... ";
-    this.information = $event;
+  public scanSuccessHandler($event: string) {
+    this.scannerEnabled = false;  // Desactiva el escáner
+    this.information = $event;  // Almacena la información escaneada
   }
 
   public enableScanner() {
-    this.scannerEnabled = !this.scannerEnabled;
-    this.information = "No se  detectado información de ningún código. Acerque un código QR para escanear.";
+    this.scannerEnabled = true;  // Permite reactivar el escáner
+    this.information = ""; // Limpia la información escaneada anterior
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
   onSubmit(userForm: NgForm) {

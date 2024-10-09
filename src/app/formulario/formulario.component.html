@@ -106,7 +106,14 @@
 
 <h1>SCANNER PRUEBA</h1>
 
-<zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
-</zxing-scanner>
-<button (click)="enableScanner()" *ngIf="!scannerEnabled" type="button" class="btn btn-success">LEER
-    OTRO</button>
+<!-- Escáner de QR -->
+<zxing-scanner *ngIf="scannerEnabled" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+
+<!-- Botón para reactivar el escáner -->
+<button *ngIf="!scannerEnabled" (click)="enableScanner()" class="btn btn-primary">Escanear Otro Código</button>
+
+<!-- Mostrar la información escaneada -->
+<div *ngIf="information">
+  <h3>Información Escaneada:</h3>
+  <p>{{ information }}</p>
+</div>
