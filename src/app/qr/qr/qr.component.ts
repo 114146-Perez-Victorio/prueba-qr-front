@@ -31,7 +31,7 @@ export class QRComponent {
       <strong>Tipo de Documento:</strong> ${data.documentType}<br>
       <strong>Vehículo:</strong> ${data.vehicle}<br>
       <strong>Patente:</strong> ${data.plate}<br>
-      <strong>Fecha Generada:</strong> ${data.generatedDate}<br>
+      <strong>Fecha Generada:</strong> ${this.formatDate(data.generatedDate)}<br>
       <strong>Fecha de Inicio:</strong> ${this.formatDate(data.startDate)}<br>
       <strong>Fecha de Fin:</strong> ${this.formatDate(data.endDate)}
     `;
@@ -39,22 +39,15 @@ export class QRComponent {
 
   // Método para formatear la fecha
   private formatDate(dateArray: number[]): string {
-    if (dateArray.length >= 7) {
-      const [year, month, day, hours, minutes, seconds, milliseconds] =
-        dateArray;
-      const date = new Date(
-        year,
-        month - 1,
-        day,
-        hours,
-        minutes,
-        seconds,
-        milliseconds
-      );
 
-      // Formatear la fecha como "día/mes/año"
-      return date.toLocaleDateString('es-ES'); // 'es-ES' para el formato español
+    if (dateArray.length >= 3) {
+      const year = dateArray[0];  // Año
+      const month = dateArray[1]; // Mes (0-11)
+      const day = dateArray[2];    // Día
+  
+      return `${day}/${month}/${year}`;
     }
     return 'Fecha no válida';
   }
+  
 }
