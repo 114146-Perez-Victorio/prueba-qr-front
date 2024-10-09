@@ -1,11 +1,11 @@
-import { NgIf } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @Component({
   selector: 'app-qr',
   standalone: true,
-  imports: [ZXingScannerModule, NgIf],
+  imports: [ZXingScannerModule, NgIf, DatePipe],
   templateUrl: './qr.component.html',
   styleUrl: './qr.component.css',
 })
@@ -31,9 +31,7 @@ export class QRComponent {
       <strong>Tipo de Documento:</strong> ${data.documentType}<br>
       <strong>Vehículo:</strong> ${data.vehicle}<br>
       <strong>Patente:</strong> ${data.plate}<br>
-      <strong>Fecha Generada:</strong> ${this.formatDate(
-        data.generatedDate
-      )}<br>
+      <strong>Fecha Generada:</strong> ${this.formatDate(data.generatedDate)}<br>
       <strong>Fecha de Inicio:</strong> ${this.formatDate(data.startDate)}<br>
       <strong>Fecha de Fin:</strong> ${this.formatDate(data.endDate)}
     `;
@@ -41,12 +39,10 @@ export class QRComponent {
 
   // Método para formatear la fecha
   private formatDate(dateArray: number[]): string {
-    // Asegúrate de que el array tenga al menos la longitud adecuada
     if (dateArray.length >= 7) {
       const [year, month, day, hours, minutes, seconds, milliseconds] =
         dateArray;
-      // Se suma 1 al mes porque los meses en JavaScript son 0-indexed
-      let date = new Date(
+      const date = new Date(
         year,
         month - 1,
         day,
@@ -55,7 +51,9 @@ export class QRComponent {
         seconds,
         milliseconds
       );
-      return date.toLocaleString(); // Formato de fecha y hora
+
+      // Formatear la fecha como "día/mes/año"
+      return date.toLocaleDateString('es-ES'); // 'es-ES' para el formato español
     }
     return 'Fecha no válida';
   }
