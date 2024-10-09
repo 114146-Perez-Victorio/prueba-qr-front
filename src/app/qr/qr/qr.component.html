@@ -1,0 +1,14 @@
+<!-- Botón para activar el escáner -->
+<button (click)="startScan()" class="btn btn-primary">Escanear</button>
+
+<!-- Escáner de QR: Solo se muestra cuando scannerEnabled es true -->
+<zxing-scanner 
+  *ngIf="scannerEnabled" 
+  (scanSuccess)="scanSuccessHandler($event)">
+</zxing-scanner>
+
+<!-- Mostrar la información escaneada -->
+<div *ngIf="information">
+  <h3>Información Escaneada:</h3>
+  <p>{{ information }}</p>
+</div>

@@ -3,30 +3,18 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RestService } from '../services/rest.service';
 import { NgIf } from '@angular/common';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { QRComponent } from "../qr/qr/qr.component";
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [FormsModule, NgIf, ZXingScannerModule],
+  imports: [FormsModule, NgIf, QRComponent],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',
 })
 export class FormularioComponent {
   constructor(private restForm: RestService) {}
   qrImageUrl: string | null = null; // Variable para almacenar la URL de la imagen del QR
-  scannerEnabled: boolean = true;
-  information: string = "";
-
-  public scanSuccessHandler($event: string) {
-    this.scannerEnabled = false;  // Desactiva el escáner
-    this.information = $event;  // Almacena la información escaneada
-  }
-
-  public enableScanner() {
-    this.scannerEnabled = true;  // Permite reactivar el escáner
-    this.information = ""; // Limpia la información escaneada anterior
-  }
-
 
   onSubmit(userForm: NgForm) {
     const formData = {
