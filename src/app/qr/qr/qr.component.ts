@@ -31,7 +31,7 @@ export class QRComponent {
       <strong>Tipo de Documento:</strong> ${data.documentType}<br>
       <strong>Vehículo:</strong> ${data.vehicle}<br>
       <strong>Patente:</strong> ${data.plate}<br>
-      <strong>Fecha Generada:</strong> ${this.formatDate(data.generatedDate)}<br>
+      <strong>Fecha Generada:</strong> ${data.generatedDate}<br>
       <strong>Fecha de Inicio:</strong> ${this.formatDate(data.startDate)}<br>
       <strong>Fecha de Fin:</strong> ${this.formatDate(data.endDate)}
     `;
